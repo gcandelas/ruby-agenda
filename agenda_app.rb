@@ -1,3 +1,7 @@
+# Agenda de contactos sencilla hecha con Ruby
+# Creador: Gregorio Candelas / gcandelas19@gmail.com 
+# Fecha: Febrero 2023.
+
 require "./agenda.rb"
 
 class AgendaApp
@@ -8,9 +12,9 @@ class AgendaApp
   end
 
   def run
-  
+    # Creación de interfaz de usuario
     loop do
-      puts ""
+      print "\n"
       40.times {print "="}
       puts "\n         *** RUBY AGENDA ***"
       puts "\n   ¿Qué deseas hacer?"
@@ -26,57 +30,56 @@ class AgendaApp
       input = gets.chomp
 
       case input
+        # Caso (1): Buscar contacto
         when "1"
-          if @agenda.no_contacts
-            puts ""
+          if @agenda.no_contacts  # Primero verificar si hay algún contacto en la agenda.
+            print "\n"
             40.times {print "-"}
-            puts ""
-            puts ">>> No hay contactos para mostrar"
+            puts "\n>>> No hay contactos para mostrar"
             40.times {print "-"}
-            puts ""
-            print "    Presiona 'Enter' para continuar "
+            print "\n    Presiona 'Enter' para continuar "
             gets
           else
             print "\nIntroduce el nombre del contacto a buscar: "
             name = gets.chomp
-            puts ""
+            print "\n"
             40.times {print "-"}
-            puts ""
+            print "\n"
             @agenda.show_contact(name)
             40.times {print "-"}
-            puts ""
-            print "    Presiona 'Enter' para continuar "
+            print "\n    Presiona 'Enter' para continuar "
             gets
           end
-          
+
+        # Caso (2): Ver todos los contactos  
         when "2"
-          puts ""
+          print "\n"
           40.times {print "-"}
-          puts ""
+          print "\n"
           @agenda.show_all
           40.times {print "-"}
-          puts ""
-          print "    Presiona 'Enter' para continuar "
+          print "\n    Presiona 'Enter' para continuar "
           gets
-
+        
+        # Caso (3): Agregar contacto
         when "3"
           print "\nIntroduce el nombre del contacto : "
           name = gets.chomp
           print "Introduce el número de teléfono : "
           phone = gets.chomp
           @agenda.add_contact(name, phone)
-          puts ""
+          print "\n"
           40.times {print "-"}
           print "\n>>> Contacto agregado exitosamente"
-          puts ""
+          print "\n"
           40.times {print "-"}
-          puts ""
-          print "    Presiona 'Enter' para continuar "
+          print "\n    Presiona 'Enter' para continuar "
           gets
-
+        
+        # Caso (4): Eliminar un contacto
         when "4"
           if @agenda.no_contacts
-            puts ""
+            print "\n"
             40.times {print "-"}
             puts "\n>>> No hay contactos para eliminar"
             40.times {print "-"}
@@ -85,17 +88,18 @@ class AgendaApp
           else
             print "\nIntroduce el nombre del contacto a eliminar: "
             name = gets.chomp
-            puts ""
+            print "\n"
             40.times {print "-"}
             @agenda.delete_contact(name)
             40.times {print "-"}
             print "\n    Presiona 'Enter' para continuar "
             gets
           end
-
+        
+        # Caso (5): Borrar todos los contactos
         when "5"
           if @agenda.no_contacts
-            puts ""
+            print "\n"
             40.times {print "-"}
             puts "\n>>> No hay contactos para eliminar"
             40.times {print "-"}
@@ -105,7 +109,7 @@ class AgendaApp
             print "\n¿Estás seguro que deseas eliminar todos los contactos de la agenda s/n: "    
             if gets.chomp == "s"
               @agenda.delete_all
-              puts ""
+              print "\n"
               40.times {print "-"}
               puts "\n>>> Todos los contactos han sido eliminados"
               40.times {print "-"}
@@ -119,13 +123,12 @@ class AgendaApp
           
         else
           puts "\n>>> Opción no válida"
-          puts ""
-          print "    Presiona 'Enter' para continuar "
+          print "\n    Presiona 'Enter' para continuar "
           gets
       end
     end
     puts "\n>>> ¡Gracias por utilizar Ruby Agenda!"
-    puts ""
+    print "\n"
   end
 end 
 
